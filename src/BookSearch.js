@@ -26,9 +26,6 @@ function BookSearch({ addToBookshelf }) {
     }
   };
 
-  useEffect(() => {
-    searchBooks(); // Call the search function when the component mounts
-  }, []); // Empty dependency array ensures this runs only once on mount
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
