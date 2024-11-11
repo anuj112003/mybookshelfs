@@ -19,9 +19,9 @@ function BookSearch({ addToBookshelf }) {
   };
 
   const handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
+   
       searchBooks();
-    }
+    
   };
 
   const handleAddToBookshelf = (book) => {
@@ -34,9 +34,9 @@ function BookSearch({ addToBookshelf }) {
       <h1>Search by Book Name</h1>
       <input
         type="text"
-        value={query}
+        value={}
         onChange={e => setQuery(e.target.value)}
-        onKeyDown={handleKeyDown} // Call searchBooks on Enter key press
+        onClick={handleKeyDown} // Call searchBooks on Enter key press
         placeholder="Search for a book..."
         className='input'
       />
