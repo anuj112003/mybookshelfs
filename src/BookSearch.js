@@ -8,11 +8,7 @@ function BookSearch({ addToBookshelf }) {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false); // New state for loading indicator
 
-   useEffect(() => {
-    // Side effect logic here
-    searchBooks();
-    };
-  }, [query])
+   
   const searchBooks = async () => {
     if (query) {
       setLoading(true); // Set loading to true when search is initiated
