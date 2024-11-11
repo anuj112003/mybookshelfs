@@ -8,7 +8,6 @@ function BookSearch({ addToBookshelf }) {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false); // New state for loading indicator
 
-   
   const searchBooks = async () => {
     if (query) {
       setLoading(true); // Set loading to true when search is initiated
@@ -18,17 +17,13 @@ function BookSearch({ addToBookshelf }) {
       setLoading(false); // Set loading to false when search response is received
     }
   };
-  useEffect(() => {
-    // Side effect logic here
-    searchBooks();
-    
-  }, [query]); 
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       searchBooks();
     }
   };
+
 
 
   const handleAddToBookshelf = (book) => {
