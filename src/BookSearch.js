@@ -34,7 +34,7 @@ function BookSearch({ addToBookshelf }) {
       <h1>Search by Book Name</h1>
       <input
         type="text"
-        value={{query}
+        value={query}
         onChange={e => setQuery(e.target.value)}
         onClick={handleKeyDown} // Call searchBooks on Enter key press
         placeholder="Search for a book..."
