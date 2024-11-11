@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './Booksearch.css';
 
 function BookSearch({ addToBookshelf }) {
-  const [query, setQuery] = useState('Ramayana');
+  const [query, setQuery] = useState(' ');
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false); // New state for loading indicator
 
