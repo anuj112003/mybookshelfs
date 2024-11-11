@@ -4,27 +4,37 @@ import 'react-toastify/dist/ReactToastify.css';
 import './Booksearch.css';
 
 function BookSearch({ addToBookshelf }) {
-  const [query, setQuery] = useState(' ');
+  const [query, setQuery] = useState('Ramayana');
   const [books, setBooks] = useState([]);
-  const [loading, setLoading] = useState(false); // New state for loading indicator
+  const [loading, setLoading] = useState(false);
 
   const searchBooks = async () => {
     if (query) {
       setLoading(true); // Set loading to true when search is initiated
-      const response = await fetch(`https://openlibrary.org/search.json?q=${query}&limit=10&page=1`);
-      const data = await response.json();
-      setBooks(data.docs);
-      setLoading(false); // Set loading to false when search response is received
+      try {
+        const response = await fetch(`https://openlibrary.org/search.json?q=${query}&limit=10&page=1`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch books');
+        }
+        const data = await response.json();
+        setBooks(data.docs);
+      } catch (error) {
+        console.error('Error fetching books:', error);
+      } finally {
+        setLoading(false); // Set loading to false when search response is received
+      }
     }
   };
-  
+
+  useEffect(() => {
+    searchBooks(); // Call the search function when the component mounts
+  }, []); // Empty dependency array ensures this runs only once on mount
 
   const handleKeyDown = (event) => {
-    
+    if (event.key === 'Enter') {
       searchBooks();
-    
+    }
   };
-
 
 
   const handleAddToBookshelf = (book) => {
@@ -39,7 +49,7 @@ function BookSearch({ addToBookshelf }) {
         type="text"
         value={query}
         onChange={e => setQuery(e.target.value)}
-        onChange={handleKeyDown} // Call searchBooks on Enter key press
+        onClick={handleKeyDown} // Call searchBooks on Enter key press
         placeholder="Search for a book..."
         className='input'
       />
