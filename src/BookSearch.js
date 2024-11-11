@@ -12,12 +12,17 @@ function BookSearch({ addToBookshelf }) {
   const searchBooks = async () => {
     if (query) {
       setLoading(true); // Set loading to true when search is initiated
-      const response = await fetch(https://openlibrary.org/search.json?q=${query}&limit=10&page=1);
+      const response = await fetch(`https://openlibrary.org/search.json?q=${query}&limit=10&page=1`);
       const data = await response.json();
       setBooks(data.docs);
       setLoading(false); // Set loading to false when search response is received
     }
   };
+  useEffect(() => {
+    // Side effect logic here
+    searchBooks();
+    
+  }, [query]); 
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
