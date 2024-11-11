@@ -4,14 +4,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import './Booksearch.css';
 
 function BookSearch({ addToBookshelf }) {
-  const [query, setQuery] = useState('Mahabharat');
+  const [query, setQuery] = useState('Ramayana');
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false); // New state for loading indicator
 
   const searchBooks = async () => {
     if (query) {
       setLoading(true); // Set loading to true when search is initiated
-      const response = await fetch(`https://openlibrary.org/search.json?q=${query}&limit=10&page=1`);
+      const response = await fetch(https://openlibrary.org/search.json?q=${query}&limit=10&page=1);
       const data = await response.json();
       setBooks(data.docs);
       setLoading(false); // Set loading to false when search response is received
@@ -19,10 +19,11 @@ function BookSearch({ addToBookshelf }) {
   };
 
   const handleKeyDown = (event) => {
-   
+    if (event.key === 'Enter') {
       searchBooks();
-    
+    }
   };
+
 
   const handleAddToBookshelf = (book) => {
     addToBookshelf(book);
@@ -36,10 +37,11 @@ function BookSearch({ addToBookshelf }) {
         type="text"
         value={query}
         onChange={e => setQuery(e.target.value)}
-        onClick={handleKeyDown} // Call searchBooks on Enter key press
+        onKeyDown={handleKeyDown} // Call searchBooks on Enter key press
         placeholder="Search for a book..."
         className='input'
       />
+
       {loading && <div className="spinner"></div>} 
       <div className='cards'>
         {books.map(book => (
