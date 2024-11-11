@@ -17,6 +17,9 @@ function BookSearch({ addToBookshelf }) {
       setLoading(false); // Set loading to false when search response is received
     }
   };
+  useEffect(() => {
+    searchBooks(); // Initial search on component mount or query change
+  }, [query]);
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
